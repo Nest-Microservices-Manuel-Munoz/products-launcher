@@ -9,12 +9,12 @@ services:
       - 8222:8222
   
   client-gateway:
-    build: ./client-gateway
+    build: ./client-gateway # Executes the dockerfile in the client-gateway directory
     ports:
       - ${CLIENT_GATEWAY_PORT}:3000
     volumes:
-      - ./client-gateway/src:/usr/src/app/src
-    command: npm run start:dev
+      - ./client-gateway/src:/usr/src/app/src # Mounts the source code in the container for live reloading
+    command: npm run start:dev # Command to run the application in development mode
     environment:
       - PORT=3000
       - NATS_SERVERS=nats://nats-server:4222
